@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="fund-index">
 	<p>
 		<?= Html::a('<span class="glyphicon glyphicon-plus"></span> '. 
-			Yii::t('app', 'Add'), ['create'], ['class' => 'btn btn-success']) ?>
+			Module::t('core', 'Add'), ['create'], ['class' => 'btn btn-success']) ?>
 	</p>
 
     <?= GridView::widget([

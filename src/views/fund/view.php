@@ -7,8 +7,10 @@ use yii\helpers\Url;
 use yii\bootstrap\Carousel;
 use yii\widgets\DetailView;
 
+use sergmoro1\resort\Module;
+
 $this->title = $model->caption;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Funds'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('core', 'Funds'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->caption;
 ?>
 
