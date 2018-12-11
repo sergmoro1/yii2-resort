@@ -1,0 +1,30 @@
+{
+    "name": "sergmoro1/yii2-resort",
+    "version": "1.0.0",
+    "description": "Resort rooms and price management.",
+    "keywords": [
+        "yii2",
+        "resort", "room", "price", "management"
+    ],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergey Morozov",
+            "email": "sergmoro1@ya.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "sergmoro1/yii2-blog-tools" : "dev-master",
+        "sergmoro1/yii2-slide" : "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "sergmoro1\\resort\\": "src"
+        }
+    }
+}
