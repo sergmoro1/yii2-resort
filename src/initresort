@@ -16,7 +16,7 @@ copyFiles($src, '/console/rbac/');
 if(!is_dir('./frontend/web/files'))
     mkdir('./frontend/web/files');
 // make folders for files & photos
-makeFolders('./frontend/web/files/', ['fund']);
+makeFolders('./frontend/web/files/', ['fund', 'slide']);
 
 /**
  * Copy all files from $source$dest/ to .$dest/

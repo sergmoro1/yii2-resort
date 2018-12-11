@@ -35,3 +35,78 @@ Blog init, run all migrations and configs as explained in <a href='https://githu
 $ php yii migrate --migrationPath=@vendor/sergmoro1/yii2-resort/src/migrations
 </pre>
 
+<h3>Copy predefined files to appropriate folders</h3>
+
+In app directory:
+
+<pre>
+$ cp ./vendor/sergmoro1/yii2-resort/src/initresort ./
+$ php initresort
+$ chmod -R 777 ./frontend/web/files
+</pre>
+
+<h3>Config</h3>
+
+Change <code>common/config/main.php</code>.
+
+<pre>
+<?php
+return [
+  ...
+  'modules' => [
+    ...
+    'resort' => ['class' => 'sergmoro1\resort\Module'],
+    'slide' => ['class' => 'sergmoro1\slide\Module'],
+	],
+</pre>
+
+Replace default <code>frontend/config/main.php</code>.
+
+<pre>
+<?php  
+return [
+  'email' => [
+    'admin' => 'admin@your-site.ru',
+    'contact' => 'admin@your-site.ru',
+  ],
+  'commentsPerPage' => 5,
+  'authorShow' => true,
+  // Header menu (example)
+  'header-menu' => [
+    'items' => [
+      ['label' => 'Service', 'title' => 'About your serveces', 'url' => ['site/index']],
+      ['label' => 'Blog', 'title' => 'Posts about ...', 'url' => ['post/index']],
+      ['label' => 'Feedback', 'title' => 'Send us a short message by email', 'url' => ['site/feedback']],
+    ],
+  ],
+  // Footer menus (example)
+  'footer-menu' => [
+    'first' => [
+      ['label' => 'Service', 'title' => 'About your serveces', 'url' => ['site/index']],
+      ['label' => 'Blog', 'title' => 'Posts about ...', 'url' => ['post/index']],
+    ],
+    'second' => [
+      ['label' => 'Feedback', 'title' => 'Send us a short message by email', 'url' => ['site/feedback']],
+    ],
+  ],
+  // fab fa-$icons[$id] fa-stack-1x fa-inverse
+  'icons' => [
+    'yandex' => 'yandex',
+    'vkontakte' => 'vk',
+  ],
+  'common' => [
+    'slides' => [
+      ['id' => 1, 'caption' => 'Реклама'],
+      ['id' => 2, 'caption' => 'Характерная черта'],
+      ['id' => 3, 'caption' => 'Ключевая услуга'],
+    ],
+    // Description format
+    // Title # Subtitle # Slogan # Link
+    'highlights' => ['h4', 'p', 'small', 'b', 'p', 'small'],
+  ],
+];
+</pre>
+
+<h2>Start</h2>
+
+Enter <code>http://your-app/backend/web</code> and <code>Login</code>.
