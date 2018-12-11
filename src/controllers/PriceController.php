@@ -11,7 +11,7 @@ use sergmoro1\lookup\models\Lookup;
 
 class PriceController extends ModalController
 {
-	public $modelName = 'Price';
+    public $modelName = 'Price';
     public function newModel() { return new Price(); }
     public function newSearch() { return new PriceSearch(); }
 
@@ -40,7 +40,7 @@ class PriceController extends ModalController
             foreach($model->accommodations as $accomodation) {
                 $a[$accomodation->position] = $accomodation->code;
             }
-            if($last->position < count($a)) {
+            if($last && $last->position < count($a)) {
                 $model->position = $last->position + 1;
                 $model->type = $last->type;
                 $model->fund_id = $last->fund_id;
@@ -68,7 +68,7 @@ class PriceController extends ModalController
         }
     }
 
-    public function actionEntityExists($id, $type, $fund_id, $accommodation, $food, $treatment)
+    public function actionEntityExists($type, $fund_id, $accommodation, $food, $treatment)
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return Price::find()->where([
@@ -77,8 +77,6 @@ class PriceController extends ModalController
             'accommodation' => $accommodation, 
             'food' => $food, 
             'treatment' => $treatment,
-        ])->andWhere([
-            '<>', 'id', $id, // any entities except current
         ])->exists();
     }
 }

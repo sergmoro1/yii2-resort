@@ -46,8 +46,11 @@ class Price extends ActiveRecord
     public function rules()
     {
         return [
-            [['fund_id', 'type', 'accommodation', 'position', 'value'], 'required'],
-            [['fund_id', 'type', 'accommodation', 'position', 'value'], 'integer'],
+            [['position', 'type', 'fund_id', 'accommodation', 'food', 'value'], 'required'],
+            ['treatment', 'default', 'value' => 1],
+            ['show', 'default', 'value' => 0],
+            [['fund_id', 'type', 'accommodation', 'position', 'food', 'value'], 'integer'],
+            ['treatment', 'boolean'],
 /*
             [['type', 'fund_id', 'accommodation', 'food', 'treatment'], 'unique', 
                 'targetAttribute' => ['type', 'fund_id', 'accommodation', 'food', 'treatment'], 
@@ -55,7 +58,7 @@ class Price extends ActiveRecord
             ],
 */
             [['type', 'fund_id', 'accommodation', 'food', 'treatment'], 'sergmoro1\resort\components\UniqueValidator'], 
-            [['food', 'treatment', 'show'], 'safe'],
+            [['treatment', 'show'], 'safe'],
         ];
     }
 
