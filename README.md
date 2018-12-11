@@ -50,20 +50,18 @@ $ chmod -R 777 ./frontend/web/files
 Change <code>common/config/main.php</code>.
 
 <pre>
-<?php
 return [
   ...
   'modules' => [
     ...
     'resort' => ['class' => 'sergmoro1\resort\Module'],
     'slide' => ['class' => 'sergmoro1\slide\Module'],
-	],
+    ],
 </pre>
 
 Replace default <code>frontend/config/main.php</code>.
 
-<pre>
-<?php  
+<pre>  
 return [
   'email' => [
     'admin' => 'admin@your-site.ru',
