@@ -12,6 +12,12 @@ copy($src . '/console/controllers/RbacController.php', './console/controllers/Rb
 if(!is_dir('./console/rbac'))
     mkdir('./console/rbac');
 copyFiles($src, '/console/rbac/');
+// console/migrations
+if(!is_dir('./console/migrations'))
+    mkdir('./console/migrations');
+if(!is_dir('./console/migrations/resort'))
+    mkdir('./console/migrations/resort');
+copyFiles($src, '/console/migrations/resort/');
 // frontend/web/files
 if(!is_dir('./frontend/web/files'))
     mkdir('./frontend/web/files');

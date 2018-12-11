@@ -45,6 +45,13 @@ $ php initresort
 $ chmod -R 777 ./frontend/web/files
 </pre>
 
+To start the application, you need to determine the names of buildings of your hotel, room categories, accommodation options, food. 
+As an example, you can run a migration.
+
+<pre>
+$ php yii migrate --migrationPath=@app/migrations/resort
+</pre>
+
 <h3>Config</h3>
 
 Change <code>common/config/main.php</code>.
