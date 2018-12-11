@@ -13,10 +13,10 @@ $this->title = Module::t('core', 'Funds');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="fund-index">
-	<p>
-		<?= Html::a('<span class="glyphicon glyphicon-plus"></span> '. 
-			Module::t('core', 'Add'), ['create'], ['class' => 'btn btn-success']) ?>
-	</p>
+    <p>
+        <?= Html::a('<span class="glyphicon glyphicon-plus"></span> '. 
+            Module::t('core', 'Add'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,49 +24,49 @@ $this->params['breadcrumbs'][] = $this->title;
         'layout' => "{items}\n{summary}\n{pager}",
         'columns' => [
             [
-				'attribute' => 'id',
-				'options' => ['style' => 'width:60px;'],
-				'format' => 'html',
-				'value' => function($data) {
-					return $data->getFieldLink();
-				}
-			],
+                'attribute' => 'id',
+                'options' => ['style' => 'width:60px;'],
+                'format' => 'html',
+                'value' => function($data) {
+                    return $data->getFieldLink();
+                }
+            ],
             [
-				'header' => Module::t('core', 'Image'),
-				'format' => 'html',
-				'value' => function($data) {
-					return Html::img($data->getImage('thumb'));
-				},
-			],
-			'caption',
+                'header' => Module::t('core', 'Image'),
+                'format' => 'html',
+                'value' => function($data) {
+                    return Html::img($data->getImage('thumb'));
+                },
+            ],
+            'caption',
             [
-				'attribute' => 'hotel_id',
-				'filter' => Lookup::items('HotelName'),
-				'value' => function($data) {
-					return Lookup::item('HotelName', $data->hotel_id);
-				}
-			],
-			[
-				'attribute' => 'category',
-				'filter' => Lookup::items('RoomCategory'),
-				'value' => function($data) {
-					return Lookup::item('RoomCategory', $data->category);
-				}
-			],
-			'room',
-			'person',
-			'size',
+                'attribute' => 'hotel_id',
+                'filter' => Lookup::items('HotelName'),
+                'value' => function($data) {
+                    return Lookup::item('HotelName', $data->hotel_id);
+                }
+            ],
             [
-				'header' => Module::t('core', 'Price'),
-				'value' => function($data) {
-					return $data->getPrice();
-				},
-			],
+                'attribute' => 'category',
+                'filter' => Lookup::items('RoomCategory'),
+                'value' => function($data) {
+                    return Lookup::item('RoomCategory', $data->category);
+                }
+            ],
+            'room',
+            'person',
+            'size',
             [
-				'class' => 'yii\grid\ActionColumn',
-				'template' => '{view}{update}{delete}', 
-				'options' => ['style' => 'width:8%;'],
-			],
+                'header' => Module::t('core', 'Price'),
+                'value' => function($data) {
+                    return $data->getPrice();
+                },
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}{update}{delete}', 
+                'options' => ['style' => 'width:8%;'],
+            ],
         ],
     ]); ?>
 

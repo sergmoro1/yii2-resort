@@ -21,76 +21,76 @@ use sergmoro1\uploader\widgets\Byone;
 
     <div class="form-group">
         <?= Html::submitButton(Module::t('core', 'Save'), [
-			'class' => 'btn btn-success',
-		]) ?>
+            'class' => 'btn btn-success',
+        ]) ?>
     </div>
 
     <?= $form->field($model, 'caption')
-		->textInput(['maxlength' => true])
-	?>
+        ->textInput(['maxlength' => true])
+    ?>
 
     <?php echo $form->field($model, 'slug')
-		->textInput(['maxlength' => true])
-	?>
+        ->textInput(['maxlength' => true])
+    ?>
 
     <?= $form->field($model, 'hotel_id')
-		->dropdownList(Lookup::items('HotelName'), [
-			'prompt' => Module::t('core', 'Select'),
-	]) ?>
+        ->dropdownList(Lookup::items('HotelName'), [
+            'prompt' => Module::t('core', 'Select'),
+    ]) ?>
 
     <?= $form->field($model, 'category')
-		->dropdownList(Lookup::items('RoomCategory'), [
-			'prompt' => Module::t('core', 'Select'),
-	]) ?>
+        ->dropdownList(Lookup::items('RoomCategory'), [
+            'prompt' => Module::t('core', 'Select'),
+    ]) ?>
 
-	<div class='row'>
-		<div class="col-lg-6">
-			<?= $form->field($model, 'room')->textInput() ?>
-		</div>
-		<div class="col-lg-6">
-			<?= $form->field($model, 'person')->textInput() ?>
-		</div>
+    <div class='row'>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'room')->textInput() ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'person')->textInput() ?>
+        </div>
     </div>
 
-	<div class='row'>
-		<div class="col-lg-6">
-			<?= $form->field($model, 'size', [
-				'template' => "{label}\n<div class='input-group'>{input}<span class='input-group-addon'>м2</span></div>\n{hint}\n{error}",
-			])->textInput() ?>
-		</div>
-		<div class="col-lg-6">
-			<?= $form->field($model, 'price_like')
-				->dropdownList(Fund::getItems($model->id), [
-					'prompt' => Module::t('core', 'Select'),
-			]) ?>
-		</div>
+    <div class='row'>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'size', [
+                'template' => "{label}\n<div class='input-group'>{input}<span class='input-group-addon'>м2</span></div>\n{hint}\n{error}",
+            ])->textInput() ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'price_like')
+                ->dropdownList(Fund::getItems($model->id), [
+                    'prompt' => Module::t('core', 'Select'),
+            ]) ?>
+        </div>
     </div>
 
-	<div class='row'>
-		<div class="col-lg-6">
-			<?= $form->field($model, 'minibar')->checkBox() ?>
-			<?= $form->field($model, 'kettle')->checkBox() ?>
-			<?= $form->field($model, 'tv')->checkBox() ?>
-			<?= $form->field($model, 'wifi')->checkBox() ?>
-		</div>
-		<div class="col-lg-6">
-			<?= $form->field($model, 'restroom')->checkBox() ?>
-			<?= $form->field($model, 'sauna')->checkBox() ?>
-			<?= $form->field($model, 'room_service')->checkBox() ?>
-			<?= $form->field($model, 'room_cleaning')->checkBox() ?>
-		</div>
+    <div class='row'>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'minibar')->checkBox() ?>
+            <?= $form->field($model, 'kettle')->checkBox() ?>
+            <?= $form->field($model, 'tv')->checkBox() ?>
+            <?= $form->field($model, 'wifi')->checkBox() ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'restroom')->checkBox() ?>
+            <?= $form->field($model, 'sauna')->checkBox() ?>
+            <?= $form->field($model, 'room_service')->checkBox() ?>
+            <?= $form->field($model, 'room_cleaning')->checkBox() ?>
+        </div>
     </div>
 
-	<?= $form->field($model, 'description')->widget(Widget::className(), [
-		'settings' => [
-			'lang' => 'ru',
-			'minHeight' => 200,
-			'plugins' => [
-				'clips',
-				'fullscreen'
-			]
-		]
-	]); ?>
+    <?= $form->field($model, 'description')->widget(Widget::className(), [
+        'settings' => [
+            'lang' => 'ru',
+            'minHeight' => 200,
+            'plugins' => [
+                'clips',
+                'fullscreen'
+            ]
+        ]
+    ]); ?>
 
     <?= sergmoro1\blog\widgets\metaTagForm\Widget::widget([
         'model' => $model,
@@ -98,20 +98,20 @@ use sergmoro1\uploader\widgets\Byone;
 
     <div class="form-group">
         <?= Html::submitButton(Module::t('core', 'Save'), [
-			'class' => 'btn btn-success',
-		]) ?>
+            'class' => 'btn btn-success',
+        ]) ?>
     </div>
 </div>
 <div class="post-files col-lg-4">
-	<?= Byone::widget([
-		'model' => $model,
-		'minFileSize' => 0.04, // 40Kb
-		'maxFileSize' => 6, // 6Mb
-		'appendixView' => '/fund/appendix.php',
-		'draggable' => true,
-		'cropAllowed' => true,
-	]) ?>
-	<hr>
+    <?= Byone::widget([
+        'model' => $model,
+        'minFileSize' => 0.04, // 40Kb
+        'maxFileSize' => 6, // 6Mb
+        'appendixView' => '/fund/appendix.php',
+        'draggable' => true,
+        'cropAllowed' => true,
+    ]) ?>
+    <hr>
 </div>
 
 </div>

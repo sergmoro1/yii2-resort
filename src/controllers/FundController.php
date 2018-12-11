@@ -16,7 +16,7 @@ use sergmoro1\resort\models\FundSearch;
  */
 class FundController extends Controller
 {
-	private $_model;
+    private $_model;
 
     public function behaviors()
     {
@@ -36,16 +36,16 @@ class FundController extends Controller
      */
     public function actionIndex()
     {
-		if (!Yii::$app->user->can('index'))
-			throw new ForbiddenHttpException(Yii::t('app', 'Access denied'));
+        if (!Yii::$app->user->can('index'))
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied'));
 
-		$searchModel = new FundSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->get());
+        $searchModel = new FundSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->get());
 
-		return $this->render('index', [
-			'dataProvider' => $dataProvider,
-			'searchModel' => $searchModel,
-		]);
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
     }
 
     /**
@@ -56,13 +56,13 @@ class FundController extends Controller
      */
     public function actionView($id = 0, $slug= '')
     {
-		$model = $this->loadModel($id, $slug);
-		if (\Yii::$app->user->can('viewFund', ['fund' => $model])) {
-			return $this->render('view', [
-				'model' => $model,
-			]);
-		} else
-			throw new ForbiddenHttpException(Yii::t('app', 'Access denied'));
+        $model = $this->loadModel($id, $slug);
+        if (\Yii::$app->user->can('viewFund', ['fund' => $model])) {
+            return $this->render('view', [
+                'model' => $model,
+            ]);
+        } else
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied'));
     }
 
     /**
@@ -72,20 +72,20 @@ class FundController extends Controller
      */
     public function actionCreate()
     {
-		if (\Yii::$app->user->can('create')) {
-			$model = new Fund();
-			
-			$model->tv = $model->restroom = $model->room_service = $model->room_cleaning = true;
+        if (\Yii::$app->user->can('create')) {
+            $model = new Fund();
+            
+            $model->tv = $model->restroom = $model->room_service = $model->room_cleaning = true;
 
-			if ($model->load(Yii::$app->request->post()) && $model->save()) {
-				return $this->redirect(['view', 'id' => $model->id]);
-			} else {
-				return $this->render('create', [
-					'model' => $model,
-				]);
-			}
-		} else
-			throw new ForbiddenHttpException(Yii::t('app', 'Access denied'));
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+        } else
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied'));
     }
 
     /**
@@ -96,17 +96,17 @@ class FundController extends Controller
      */
     public function actionUpdate($id)
     {
-		$model = $this->loadModel($id);
-		if (\Yii::$app->user->can('update', ['fund' => $model])) {
-			if ($model->load(Yii::$app->request->post()) && $model->save()) {
-				return $this->redirect(['view', 'id' => $model->id]);
-			} else {
-				return $this->render('update', [
-					'model' => $model,
-				]);
-			}
-		} else
-			throw new ForbiddenHttpException(\Yii::t('app', 'Access denied'));
+        $model = $this->loadModel($id);
+        if (\Yii::$app->user->can('update', ['fund' => $model])) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        } else
+            throw new ForbiddenHttpException(\Yii::t('app', 'Access denied'));
     }
 
     /**
@@ -117,20 +117,20 @@ class FundController extends Controller
      */
     public function actionDelete($id)
     {
-		if (Yii::$app->user->can('delete')) {
-			$model = $this->loadModel($id);
-			foreach($model->files as $file)
-				$file->delete();
-			Yii::$app->db
-			    ->createCommand('DELETE FROM {{%comment}} WHERE model=:model AND parent_id=:parent_id')
-			    ->bindValues([':model' => Fund::COMMENT_FOR, ':parent_id' => $id])
-			    ->execute();
+        if (Yii::$app->user->can('delete')) {
+            $model = $this->loadModel($id);
+            foreach($model->files as $file)
+                $file->delete();
+            Yii::$app->db
+                ->createCommand('DELETE FROM {{%comment}} WHERE model=:model AND parent_id=:parent_id')
+                ->bindValues([':model' => Fund::COMMENT_FOR, ':parent_id' => $id])
+                ->execute();
 
-			$model->delete();
+            $model->delete();
 
-			return $this->redirect(['index']);
-		} else
-			throw new ForbiddenHttpException(\Yii::t('app', 'Access denied'));
+            return $this->redirect(['index']);
+        } else
+            throw new ForbiddenHttpException(\Yii::t('app', 'Access denied'));
     }
 
     /**
@@ -142,14 +142,14 @@ class FundController extends Controller
      */
     public function loadModel($id, $slug = '')
     {
-		if($this->_model === null) 
-		{
-			if(($this->_model = $id ? Fund::findOne($id) : Fund::findOne(['slug' => $slug])) !== null) 
-			{
-				return $this->_model;
-			} else {
-				throw new NotFoundHttpException('The requested model does not exist.');
-			}
-		}
-	}
+        if($this->_model === null) 
+        {
+            if(($this->_model = $id ? Fund::findOne($id) : Fund::findOne(['slug' => $slug])) !== null) 
+            {
+                return $this->_model;
+            } else {
+                throw new NotFoundHttpException('The requested model does not exist.');
+            }
+        }
+    }
 }

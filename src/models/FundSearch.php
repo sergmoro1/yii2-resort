@@ -31,30 +31,30 @@ class FundSearch extends Fund
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-			'pagination' => [
-				'pageSize' => Yii::$app->params['postsPerPage'],
-			],
-			'sort' => [
-				'defaultOrder' => [
-					'hotel_id' => SORT_ASC, 
-					'category' => SORT_ASC, 
-					'caption' => SORT_ASC,
-				]
-			],
+            'pagination' => [
+                'pageSize' => Yii::$app->params['postsPerPage'],
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'hotel_id' => SORT_ASC, 
+                    'category' => SORT_ASC, 
+                    'caption' => SORT_ASC,
+                ]
+            ],
         ]);
 
         // load the search form data and validate
         if (!($this->load($params) && $this->validate())) {
-			return $dataProvider;
+            return $dataProvider;
         }
 
         // adjust the query by adding the filters
         $query->andFilterWhere(['id' => $this->id])
-			->andFilterWhere(['room' => $this->room])
-			->andFilterWhere(['person' => $this->person])
-			->andFilterWhere(['hotel_id' => $this->hotel_id])
-			->andFilterWhere(['category' => $this->category])
-			->andFilterWhere(['like', 'caption', $this->caption]);
+            ->andFilterWhere(['room' => $this->room])
+            ->andFilterWhere(['person' => $this->person])
+            ->andFilterWhere(['hotel_id' => $this->hotel_id])
+            ->andFilterWhere(['category' => $this->category])
+            ->andFilterWhere(['like', 'caption', $this->caption]);
 
         return $dataProvider;
     }

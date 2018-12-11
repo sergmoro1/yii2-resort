@@ -4,8 +4,8 @@ use yii\db\Migration;
 
 class m170622_073831_create_price extends Migration
 {
-	const FUND = '{{%fund}}';
-	const PRICE = '{{%price}}';
+    const FUND = '{{%fund}}';
+    const PRICE = '{{%price}}';
     public function up()
     {
         $tableOptions = null;
@@ -32,8 +32,8 @@ class m170622_073831_create_price extends Migration
 
     public function down()
     {
-		$this->dropForeignKey('FK_price_fund', self::PRICE);
-		$this->dropIndex('fund_id', self::PRICE);
+        $this->dropForeignKey('FK_price_fund', self::PRICE);
+        $this->dropIndex('fund_id', self::PRICE);
         $this->dropIndex('type-fund_id-accommodation-food-treatment', self::PRICE);
 
         $this->dropTable(self::PRICE);

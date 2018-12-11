@@ -16,17 +16,17 @@ use sergmoro1\lookup\models\Lookup;
 <div class="price-form">
 
 <?php $form = ActiveForm::begin([
-	'id' => 'price-form',
-	'layout' => 'horizontal',
-	'enableAjaxValidation' => true,
-	'validationUrl' => Url::toRoute(['price/validate']),		
-	'fieldConfig' => [
-		'horizontalCssClasses' => [
-			'label' => 'col-sm-4',
-			'offset' => 'col-sm-offset-4',
-			'wrapper' => 'col-sm-6',
-		],
-	],
+    'id' => 'price-form',
+    'layout' => 'horizontal',
+    'enableAjaxValidation' => true,
+    'validationUrl' => Url::toRoute(['price/validate']),        
+    'fieldConfig' => [
+        'horizontalCssClasses' => [
+            'label' => 'col-sm-4',
+            'offset' => 'col-sm-offset-4',
+            'wrapper' => 'col-sm-6',
+        ],
+    ],
 ]); ?>
     <div class="row">
     <div class="col-sm-8">
@@ -76,7 +76,7 @@ use sergmoro1\lookup\models\Lookup;
     </div>
     </div>
 
-	<?= Html::submitButton('Submit', ['id' => 'submit-btn', 'style' => 'display: none']) ?>
+    <?= Html::submitButton('Submit', ['id' => 'submit-btn', 'style' => 'display: none']) ?>
 
 <?php ActiveForm::end(); ?>
 

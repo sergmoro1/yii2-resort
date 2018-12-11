@@ -26,78 +26,78 @@ $this->params['breadcrumbs'][] = $model->caption;
         ]) ?>
     </p>
 
-	<div class='post-preview'>
+    <div class='post-preview'>
 
-		<div class='post-meta'>
-			<?= $model->getFullDate('created_at'); ?>
-		</div>
+        <div class='post-meta'>
+            <?= $model->getFullDate('created_at'); ?>
+        </div>
 
-		<div class='post-image row'>
-		<div class='col-sm-6'>
-			
-		<?php if($model->files && count($model->files) > 1): ?>
-		
-			<?= Carousel::widget([
-				'items' => $model->prepareSlider(), 
-				'options' => ['data-interval' => ''],
-				'controls' => [
-					'<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>',
-					'<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
-				]
-			]) ?>
-		
-		<?php elseif($model->files && count($model->files) == 1): ?>
+        <div class='post-image row'>
+        <div class='col-sm-6'>
+            
+        <?php if($model->files && count($model->files) > 1): ?>
+        
+            <?= Carousel::widget([
+                'items' => $model->prepareSlider(), 
+                'options' => ['data-interval' => ''],
+                'controls' => [
+                    '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>',
+                    '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
+                ]
+            ]) ?>
+        
+        <?php elseif($model->files && count($model->files) == 1): ?>
 
-			<?= Html::img($model->getImage()) ?>
+            <?= Html::img($model->getImage()) ?>
 
-		<?php endif; ?>
-		</div>
-		</div>
+        <?php endif; ?>
+        </div>
+        </div>
 
         <h3><small><span class='glyphicon glyphicon-home'></span></small> <?= $model->getTitle() ?></h3>
         <h4><?= $model->caption ?></h4>
-		<p>
-			<span class='glyphicon glyphicon-th-large'></span> <?= $model->room ?> комнатный,
-			<span class='glyphicon glyphicon-user'></span> <?= $model->person . ' местный' ?>,
-			<span class='glyphicon glyphicon-stop'></span> <?= $model->size ?> м2
+        <p>
+            <span class='glyphicon glyphicon-th-large'></span> <?= $model->room ?> комнатный,
+            <span class='glyphicon glyphicon-user'></span> <?= $model->person . ' местный' ?>,
+            <span class='glyphicon glyphicon-stop'></span> <?= $model->size ?> м2
         </p>
         <p>
-			<?php if($model->minibar): ?>
-				<span class='glyphicon glyphicon-asterisk'></span> минибар<?= $model->kettle ? ',' : '' ?>
-			<?php endif; ?>
+            <?php if($model->minibar): ?>
+                <span class='glyphicon glyphicon-asterisk'></span> минибар<?= $model->kettle ? ',' : '' ?>
+            <?php endif; ?>
 
-			<?php if($model->kettle): ?>
-				<span class='glyphicon glyphicon-cutlery'></span> чайник
-			<?php endif; ?>
-		</p>
+            <?php if($model->kettle): ?>
+                <span class='glyphicon glyphicon-cutlery'></span> чайник
+            <?php endif; ?>
+        </p>
         <p>
 
-			<?php if($model->wifi): ?>
-				<span class='glyphicon glyphicon-phone'></span> wifi<?= $model->tv ? ',' : '' ?>
-			<?php endif; ?>
-			<?php if($model->tv): ?>
-				<span class='glyphicon glyphicon-facetime-video'></span> телевизор
-			<?php endif; ?>
-		</p>
+            <?php if($model->wifi): ?>
+                <span class='glyphicon glyphicon-phone'></span> wifi<?= $model->tv ? ',' : '' ?>
+            <?php endif; ?>
+            <?php if($model->tv): ?>
+                <span class='glyphicon glyphicon-facetime-video'></span> телевизор
+            <?php endif; ?>
+        </p>
         <p>
-			
-			<?php if($model->restroom): ?>
-				<span class='glyphicon glyphicon-tint'></span> санузел в ванной<?= $model->sauna ? ',' : '' ?>
-			<?php endif; ?>
-			<?php if($model->sauna): ?>
-				<span class='glyphicon glyphicon-cloud'></span> сауна
-			<?php endif; ?>
-		</p>
+            
+            <?php if($model->restroom): ?>
+                <span class='glyphicon glyphicon-tint'></span> санузел в ванной<?= $model->sauna ? ',' : '' ?>
+            <?php endif; ?>
+            <?php if($model->sauna): ?>
+                <span class='glyphicon glyphicon-cloud'></span> сауна
+            <?php endif; ?>
+        </p>
         <p>
-			
-			<i><?= $model->getPrice() ?> <span class='glyphicon glyphicon-rub'></span>/чел
+            
+            <i><?= $model->getPrice() ?> <span class='glyphicon glyphicon-rub'></span>/чел
 
-		</p>
-		<hr>
-		
-		<p>
-		<?php echo $model->description; ?>
-		</p>
-	</div>
+        </p>
+        <hr>
+        
+        <p>
+        <?php echo $model->description; ?>
+        </p>
+    </div>
 
 </div>

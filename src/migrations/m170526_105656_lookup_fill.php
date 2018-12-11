@@ -4,16 +4,16 @@ use yii\db\Migration;
 
 class m170526_105656_lookup_fill extends Migration
 {
-	const LOOKUP = '{{%lookup}}';
-	const PROPERTY = '{{%property}}';
+    const LOOKUP = '{{%lookup}}';
+    const PROPERTY = '{{%property}}';
     // Property
     const COMMENT_FOR = 5;
 
-	const HOTEL_NAME = 10;
-	const ROOM_CATEGORY = 11;
-	const PRICE_TYPE = 12;
-	const ACCOMMODATION = 13;
-	const FOOD = 14;
+    const HOTEL_NAME = 10;
+    const ROOM_CATEGORY = 11;
+    const PRICE_TYPE = 12;
+    const ACCOMMODATION = 13;
+    const FOOD = 14;
 
     public function up()
     {

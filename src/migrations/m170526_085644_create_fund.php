@@ -4,8 +4,8 @@ use yii\db\Migration;
 
 class m170526_085644_create_fund extends Migration
 {
-	const FUND = '{{%fund}}';
-	
+    const FUND = '{{%fund}}';
+    
     public function up()
     {
         $tableOptions = null;
