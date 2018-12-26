@@ -171,19 +171,6 @@ class BaseFund extends ActiveRecord implements SitemapInterface
         return $this->getFieldLink('title');
     }
 
-    public function prepareSlider($caption = false)
-    {
-        $items = [];
-        foreach($this->files as $i => $file)
-        {
-            $item['content'] = '<p class="text-center">'. Html::img($this->getImage('', $i), ['style' => 'width: 100%;']) .'</p>';
-            if($caption)
-                $item['caption'] = $this->getDescription($i);
-            $items[] = $item;
-        }
-        return $items;
-    }
-
     /**
      * This is invoked before the record is saved.
      * @return boolean whether the record should be saved.
@@ -215,7 +202,7 @@ class BaseFund extends ActiveRecord implements SitemapInterface
 
     public static function getRooms($limit = 5, $category = self::CATEGORY_SUITE)
     {
-        return Fund::find()
+        return self::find()
             ->where('category=' . $category)
             ->limit($limit)
             ->all();
@@ -240,7 +227,7 @@ class BaseFund extends ActiveRecord implements SitemapInterface
     
     public static function getRoomsWithTheSamePrice($id)
     {
-        return Fund::findAll(['price_like' => $id]);
+        return self::findAll(['price_like' => $id]);
     }
 
     /**

@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = ['label' => Module::t('core', 'Funds'), 'url' =
 $this->params['breadcrumbs'][] = $model->caption;
 ?>
 
-<div class="fund-view">
+<div class='fund-view'>
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
@@ -26,13 +26,7 @@ $this->params['breadcrumbs'][] = $model->caption;
         ]) ?>
     </p>
 
-    <div class='post-preview'>
-
-        <div class='post-meta'>
-            <?= $model->getFullDate('created_at'); ?>
-        </div>
-
-        <div class='post-image row'>
+    <div class='post-image row'>
         <div class='col-sm-6'>
             
         <?php if($model->files && count($model->files) > 1): ?>
@@ -48,10 +42,17 @@ $this->params['breadcrumbs'][] = $model->caption;
         
         <?php elseif($model->files && count($model->files) == 1): ?>
 
-            <?= Html::img($model->getImage()) ?>
+            <img src='<?= $model->getImage() ?>' width='100%' />
 
         <?php endif; ?>
+
         </div>
+    </div>
+
+    <div class='post-preview'>
+
+        <div class='post-meta'>
+            <?= $model->getFullDate('created_at'); ?>
         </div>
 
         <h3><small><span class='glyphicon glyphicon-home'></span></small> <?= $model->getTitle() ?></h3>
