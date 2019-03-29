@@ -5,7 +5,7 @@ namespace sergmoro1\resort\models;
 use Yii;
 use yii\base\Model;
 use common\models\Fund;
-use common\models\Lookup;
+use sergmoro1\lookup\models\Lookup;
 
 /**
  * ReservationForm is the model behind the reservation form.
