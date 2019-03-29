@@ -5,25 +5,25 @@
 
 ?>
 
-<?= \Yii::t('core', 'Reservation details') ?>
+<?= \Yii::t('app', 'Reservation details') ?>
 
 <?= $choice ?>
 
-<?= \Yii::t('core', 'Arrival date') ?>: <?= $model->check_in ?>
-<?= \Yii::t('core', 'Departure date') ?>: <?= $model->check_out ?>
-<?= \Yii::t('core', 'Days amount') ?>: <?= $model->days ?>
-<?= \Yii::t('core', 'Adults') ?>: <?= $model->adults ?>
+<?= \Yii::t('app', 'Arrival date') ?>: <?= $model->check_in ?>
+<?= \Yii::t('app', 'Departure date') ?>: <?= $model->check_out ?>
+<?= \Yii::t('app', 'Days amount') ?>: <?= $model->days ?>
+<?= \Yii::t('app', 'Adults') ?>: <?= $model->adults ?>
 <?php if($model->children > 0): ?>
-<?= \Yii::t('core', 'Children') ?>: <?= $model->children ?>
+<?= \Yii::t('app', 'Children') ?>: <?= $model->children ?>
 <?php endif; ?>
-<?= \Yii::t('core', 'Name') ?>: <?= $model->first_name ?> <?= $model->last_name ?>
-<?= \Yii::t('core', 'Phone') ?>: <?= $model->phone ?>
+<?= \Yii::t('app', 'Name') ?>: <?= $model->first_name ?> <?= $model->last_name ?>
+<?= \Yii::t('app', 'Phone') ?>: <?= $model->phone ?>
 <?php if($model->email): ?>
-<?= \Yii::t('core', 'Email') ?>: <?= $model->email ?>
+<?= \Yii::t('app', 'Email') ?>: <?= $model->email ?>
 <?php endif; ?>
-<?= \Yii::t('core', 'Location') ?>: <?= $model->location ?>
+<?= \Yii::t('app', 'Location') ?>: <?= $model->location ?>
 <?php if($model->requirements): ?>
-<?= \Yii::t('core', 'Special requirements') ?>: <?= $model->requirements ?>
+<?= \Yii::t('app', 'Special requirements') ?>: <?= $model->requirements ?>
 <?php endif; ?>
 
 

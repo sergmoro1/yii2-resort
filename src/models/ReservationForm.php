@@ -90,6 +90,8 @@ class ReservationForm extends Model
 		} else
 			$choice = \Yii::t('app', 'No room reservation');
 
+		$this->check_in = strtotime($this->check_in);
+		$this->check_out = strtotime($this->check_out);
 		$this->days = floor(($this->check_out - $this->check_in)/(3600*24));
 		$this->check_in = date('d.m.Y', $this->check_in);
 		$this->check_out = date('d.m.Y', $this->check_out);
