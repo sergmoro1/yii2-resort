@@ -25,6 +25,8 @@ class ReservationForm extends Model
     public $requirements;
     public $agree;
     public $verifyCode;
+
+    public $days;
 	
     /**
      * @inheritdoc
@@ -33,8 +35,8 @@ class ReservationForm extends Model
     {
         return [
             [['check_in', 'check_out', 'adults', 'first_name', 'phone', 'location'], 'required'],
-			['check_in', 'date', 'timestampAttribute' => 'check_in'],
-			['check_out', 'date', 'timestampAttribute' => 'check_out'],
+			['check_in', 'date', 'format' => 'php: d.m.Y', 'timestampAttribute' => 'check_in'],
+			['check_out', 'date', 'format' => 'php: d.m.Y', 'timestampAttribute' => 'check_out'],
             [['fund_id', 'adults', 'children'], 'integer'],
             ['adults', 'default', 'value' => 1],
             ['children', 'default', 'value' => 0],
@@ -55,15 +57,15 @@ class ReservationForm extends Model
     public function attributeLabels()
     {
         return [
-			'check_in' => \Yii::t('app', 'Arrival date'),
-			'check_out' => \Yii::t('app', 'Departure date'),
-			'adults' => \Yii::t('app', 'Adults'),
-			'children' => \Yii::t('app', 'Children'),
-			'first_name' => \Yii::t('app', 'First Name'),
-			'last_name' => \Yii::t('app', 'Last Name'),
-			'phone' => \Yii::t('app', 'Phone'),
-			'location' => \Yii::t('app', 'Location'),
-			'requirements' => \Yii::t('app', 'Special requirements'),
+			'check_in' => \Yii::t('core', 'Arrival date'),
+			'check_out' => \Yii::t('core', 'Departure date'),
+			'adults' => \Yii::t('core', 'Adults'),
+			'children' => \Yii::t('core', 'Children'),
+			'first_name' => \Yii::t('core', 'First Name'),
+			'last_name' => \Yii::t('core', 'Last Name'),
+			'phone' => \Yii::t('core', 'Phone'),
+			'location' => \Yii::t('core', 'Location'),
+			'requirements' => \Yii::t('core', 'Special requirements'),
 			'agree' => \Yii::t('app', 'Consent to the processing of sent data'),
             'verifyCode' => \Yii::t('app', 'Verification Code'),
         ];
@@ -86,9 +88,13 @@ class ReservationForm extends Model
 			$room = Fund::findOne($this->fund_id);
 			$choice = Lookup::item('HotelName', $room->hotel_id) . ', ' . Lookup::item('RoomCategory', $room->category);
 		} else
-			$choice = \Yii::t('app', 'No room reservation');
+			$choice = \Yii::t('core', 'No room reservation');
 
-		$subject = "Заказ: $choice, {$this->check_in} - {$this->check_out}.";
+		$this->days = floor(($this->check_out - $this->check_in)/(3600*24));
+		$this->check_in = date('d.m.Y', $this->check_in);
+		$this->check_out = date('d.m.Y', $this->check_out);
+
+		$subject = \Yii::t('core', 'Order') . ": $choice, {$this->check_in} - {$this->check_out}.";
 
         \Yii::$app->mailer->setViewPath('@vendor/sergmoro1/yii2-resort/src/mail');
 
