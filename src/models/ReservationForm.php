@@ -35,8 +35,8 @@ class ReservationForm extends Model
     {
         return [
             [['check_in', 'check_out', 'adults', 'first_name', 'phone', 'location'], 'required'],
-			['check_in', 'date', 'timestampAttribute' => 'check_in'],
-			['check_out', 'date', 'timestampAttribute' => 'check_out'],
+ 			['check_in', 'date', 'format' => 'php: d.m.Y', 'timestampAttribute' => 'check_in'],
+			['check_out', 'date', 'format' => 'php: d.m.Y', 'timestampAttribute' => 'check_out'],
             [['fund_id', 'adults', 'children'], 'integer'],
             ['adults', 'default', 'value' => 1],
             ['children', 'default', 'value' => 0],
@@ -90,8 +90,6 @@ class ReservationForm extends Model
 		} else
 			$choice = \Yii::t('app', 'No room reservation');
 
-		$this->check_in = strtotime($this->check_in);
-		$this->check_out = strtotime($this->check_out);
 		$this->days = floor(($this->check_out - $this->check_in)/(3600*24));
 		$this->check_in = date('d.m.Y', $this->check_in);
 		$this->check_out = date('d.m.Y', $this->check_out);
