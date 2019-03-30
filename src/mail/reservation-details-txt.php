@@ -1,29 +1,30 @@
 <?php
+use sergmoro1\resort\Module;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\ReservationForm */
 
 ?>
 
-<?= \Yii::t('app', 'Reservation details') ?>
+<?= \Module::t('core', 'Reservation details') ?>
 
 <?= $choice ?>
 
-<?= \Yii::t('app', 'Arrival date') ?>: <?= $model->check_in ?>
-<?= \Yii::t('app', 'Departure date') ?>: <?= $model->check_out ?>
-<?= \Yii::t('app', 'Days amount') ?>: <?= $model->days ?>
-<?= \Yii::t('app', 'Adults') ?>: <?= $model->adults ?>
+<?= \Module::t('core', 'Arrival date') ?>: <?= $model->check_in ?>
+<?= \Module::t('core', 'Departure date') ?>: <?= $model->check_out ?>
+<?= \Module::t('core', 'Days amount') ?>: <?= $model->days ?>
+<?= \Module::t('core', 'Adults') ?>: <?= $model->adults ?>
 <?php if($model->children > 0): ?>
-<?= \Yii::t('app', 'Children') ?>: <?= $model->children ?>
+<?= \Module::t('core', 'Children') ?>: <?= $model->children ?>
 <?php endif; ?>
-<?= \Yii::t('app', 'Name') ?>: <?= $model->first_name ?> <?= $model->last_name ?>
-<?= \Yii::t('app', 'Phone') ?>: <?= $model->phone ?>
+<?= \Module::t('core', 'Name') ?>: <?= $model->first_name ?> <?= $model->last_name ?>
+<?= \Module::t('core', 'Phone') ?>: <?= $model->phone ?>
 <?php if($model->email): ?>
-<?= \Yii::t('app', 'Email') ?>: <?= $model->email ?>
+<?= \Module::t('core', 'Email') ?>: <?= $model->email ?>
 <?php endif; ?>
-<?= \Yii::t('app', 'Location') ?>: <?= $model->location ?>
+<?= \Module::t('core', 'Location') ?>: <?= $model->location ?>
 <?php if($model->requirements): ?>
-<?= \Yii::t('app', 'Special requirements') ?>: <?= $model->requirements ?>
+<?= \Module::t('core', 'Special requirements') ?>: <?= $model->requirements ?>
 <?php endif; ?>
 
 

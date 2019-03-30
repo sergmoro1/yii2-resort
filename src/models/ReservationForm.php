@@ -4,6 +4,8 @@ namespace sergmoro1\resort\models;
 
 use Yii;
 use yii\base\Model;
+
+use sergmoro1\resort\Module;
 use common\models\Fund;
 use sergmoro1\lookup\models\Lookup;
 
@@ -42,11 +44,11 @@ class ReservationForm extends Model
             ['children', 'default', 'value' => 0],
             [['first_name', 'last_name', 'email', 'location'], 'string', 'max' => 128],
             ['phone', 'string', 'length' => [11, 13]],
-            ['phone', 'match', 'pattern' => '/^\+{0,1}\d{11,13}$/', 'message' => Yii::t('app', 
+            ['phone', 'match', 'pattern' => '/^\+{0,1}\d{11,13}$/', 'message' => Module::t('core', 
 				'The phone number should consist from 11 to 13 digits and may be prepended with +.')],
             ['requirements', 'string', 'max' => 512],
             ['email', 'email'],
-            ['agree', 'match', 'pattern' => '/^1$/', 'message' => \Yii::t('app', 'Please confirm that you agree to the processing of data sent by you.')],
+            ['agree', 'match', 'pattern' => '/^1$/', 'message' => Module::t('core', 'Please confirm that you agree to the processing of data sent by you.')],
             ['verifyCode', 'captcha'],
         ];
     }
@@ -57,17 +59,17 @@ class ReservationForm extends Model
     public function attributeLabels()
     {
         return [
-			'check_in' => \Yii::t('app', 'Arrival date'),
-			'check_out' => \Yii::t('app', 'Departure date'),
-			'adults' => \Yii::t('app', 'Adults'),
-			'children' => \Yii::t('app', 'Children'),
-			'first_name' => \Yii::t('app', 'First Name'),
-			'last_name' => \Yii::t('app', 'Last Name'),
-			'phone' => \Yii::t('app', 'Phone'),
-			'location' => \Yii::t('app', 'Location'),
-			'requirements' => \Yii::t('app', 'Special requirements'),
-			'agree' => \Yii::t('app', 'Consent to the processing of sent data'),
-            'verifyCode' => \Yii::t('app', 'Verification Code'),
+			'check_in' => Module::t('core', 'Arrival date'),
+			'check_out' => Module::t('core', 'Departure date'),
+			'adults' => Module::t('core', 'Adults'),
+			'children' => Module::t('core', 'Children'),
+			'first_name' => Module::t('core', 'First Name'),
+			'last_name' => Module::t('core', 'Last Name'),
+			'phone' => Module::t('core', 'Phone'),
+			'location' => Module::t('core', 'Location'),
+			'requirements' => Module::t('core', 'Special requirements'),
+			'agree' => Module::t('core', 'Consent to the processing of sent data'),
+            'verifyCode' => Module::t('core', 'Verification Code'),
         ];
     }
 
@@ -88,7 +90,7 @@ class ReservationForm extends Model
 			$room = Fund::findOne($this->fund_id);
 			$choice = Lookup::item('HotelName', $room->hotel_id) . ', ' . Lookup::item('RoomCategory', $room->category);
 		} else
-			$choice = \Yii::t('app', 'No room reservation');
+			$choice = Module::t('core', 'No room reservation');
 
 		$this->check_in = strtotime($this->check_in);
 		$this->check_out = strtotime($this->check_out);
@@ -96,9 +98,9 @@ class ReservationForm extends Model
 		$this->check_in = date('d.m.Y', $this->check_in);
 		$this->check_out = date('d.m.Y', $this->check_out);
 
-		$subject = "Заказ: $choice, {$this->check_in} - {$this->check_out}.";
+		$subject = Module::t('core', 'Order') . ": $choice, {$this->check_in} - {$this->check_out}.";
 
-        \Yii::$app->mailer->setViewPath('@vendor/sergmoro1/yii2-resort/src/mail');
+        Yii::$app->mailer->setViewPath('@vendor/sergmoro1/yii2-resort/src/mail');
 
         return Yii::$app->mailer
 			->compose(

@@ -73,4 +73,5 @@ return [
     'Treatment' => 'Лечение',
     'Update' => 'Изменить',
     'Value' => 'Значение',
+    'Verification Code' => 'Код защиты от спама',
 ];
