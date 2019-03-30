@@ -53,6 +53,7 @@ return [
     'Price' => 'Цена',
     'Price is the same as a room' => 'Цена такая же как у номера',
     'Prices' => 'Цены',
+    'Reservation details' => 'Детали заказа',
     'Restroom' => 'Санузел',
     'Room' => 'Номер',
     'Room Clearning' => 'Уборка',
