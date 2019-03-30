@@ -34,7 +34,7 @@ class ReservationForm extends Model
     public function rules()
     {
         return [
-            [['check_in', 'check_out', 'adults', 'first_name', 'phone', 'location'], 'required'],
+            [['check_in', 'check_out', 'adults', 'first_name', 'phone', 'email', 'location'], 'required'],
  			['check_in', 'date', 'format' => 'php: d.m.Y', 'timestampAttribute' => 'check_in'],
 			['check_out', 'date', 'format' => 'php: d.m.Y', 'timestampAttribute' => 'check_out'],
             [['fund_id', 'adults', 'children'], 'integer'],
