@@ -86,7 +86,7 @@ class ReservationForm extends Model
         $from = [Yii::$app->params['email']['from'] => $full_name];
         // add real sender
         // $from[$this->email] = $full_name;
-        $real_sender = $this->name .' <'. $this->email .'>';
+        $real_sender = $full_name .' <'. $this->email .'>';
         if($this->fund_id) {
             $room = Fund::findOne($this->fund_id);
             $choice = Lookup::item('HotelName', $room->hotel_id) . ', ' . Lookup::item('RoomCategory', $room->category);
@@ -99,7 +99,7 @@ class ReservationForm extends Model
         $this->check_in = date('d.m.Y', $this->check_in);
         $this->check_out = date('d.m.Y', $this->check_out);
 
-        $subject = $real_sender . ', ' . Module::t('core', 'Order') . ": $choice, {$this->check_in} - {$this->check_out}.";
+        $subject = Module::t('core', 'Order') . ": $choice, {$this->check_in} - {$this->check_out}.";
 
         Yii::$app->mailer->setViewPath('@vendor/sergmoro1/yii2-resort/src/mail');
 
@@ -113,7 +113,7 @@ class ReservationForm extends Model
             )
             ->setTo($contact)
             ->setFrom($from)
-            ->setSubject($subject)
+            ->setSubject($real_sender . ' ' . $subject)
             ->send();
     }
 }
