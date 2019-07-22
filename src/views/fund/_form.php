@@ -12,7 +12,7 @@ use sergmoro1\resort\Module;
 use common\models\Fund;
 use sergmoro1\lookup\models\Lookup;
 use vova07\imperavi\Widget;
-use sergmoro1\uploader\widgets\Byone;
+use sergmoro1\uploader\widgets\Uploader;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
@@ -103,10 +103,8 @@ use sergmoro1\uploader\widgets\Byone;
     </div>
 </div>
 <div class="post-files col-lg-4">
-    <?= Byone::widget([
+    <?= Uploader::widget([
         'model' => $model,
-        'minFileSize' => 0.04, // 40Kb
-        'maxFileSize' => 6, // 6Mb
         'appendixView' => '/fund/appendix.php',
         'draggable' => true,
         'cropAllowed' => true,

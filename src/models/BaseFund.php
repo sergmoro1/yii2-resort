@@ -1,8 +1,5 @@
 <?php
-/**
- * Fund types of rooms model.
- *
- */
+
 namespace sergmoro1\resort\models;
 
 use Yii;
@@ -10,32 +7,31 @@ use yii\db\ActiveRecord;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\Link;
+use yii\behaviors\TimestampBehavior;
 
+use mrssoft\sitemap\SitemapInterface;
 use sergmoro1\resort\Module;
 use sergmoro1\blog\models\Comment;
 use sergmoro1\blog\models\CanComment;
-use sergmoro1\rudate\RuDate;
-use mrssoft\sitemap\SitemapInterface;
-use sergmoro1\blog\components\RuSlug;
+use sergmoro1\rukit\behaviors\FullDateBehavior;
+use sergmoro1\rukit\behaviors\TransliteratorBehavior;
 use sergmoro1\lookup\models\Lookup;
 
+/**
+ * Fund types of rooms model.
+ *
+ * @author Sergey Morozov <sergey@vorst.ru>
+ */
 class BaseFund extends ActiveRecord implements SitemapInterface
 {
-    use CanComment;
+    const HOTEL_NAME            = 10;
+    const ROOM_CATEGORY         = 11;
 
-    const HOTEL_NAME = 10;
-    const ROOM_CATEGORY = 11;
-
-    const HOTEL_BUILDING1 = 1;
+    const HOTEL_BUILDING1       = 1;
     
-    const CATEGORY_SUITE = 1;
-    const CATEGORY_HALFSUITE = 2;
-    const CATEGORY_STANDARD = 3;
-
-    const COMMENT_FOR = 2;
-
-    public $_comments = [];
-    public $thread = false;
+    const CATEGORY_SUITE        = 1;
+    const CATEGORY_HALFSUITE    = 2;
+    const CATEGORY_STANDARD     = 3;
     
     /**
      * @return string the associated database table name
@@ -48,10 +44,11 @@ class BaseFund extends ActiveRecord implements SitemapInterface
     public function behaviors()
     {
         return [
-            'RuDate' => ['class' => RuDate::className()],
-            'RuSlug' => [
-                'class' => RuSlug::className(),
-                'attribute' => 'caption',
+            ['class' => TimestampBehavior::className()],
+            ['class' => FullDateBehavior::className()],
+            [
+                'class' => TransliteratorBehavior::className(),
+                'from' => 'caption',
             ],
         ];
     }
@@ -89,28 +86,28 @@ class BaseFund extends ActiveRecord implements SitemapInterface
     public function attributeLabels()
     {
         return [
-            'hotel_id' => Module::t('core', 'Hotel'),
-            'category' => Module::t('core', 'Category'),
-            'caption' => Module::t('core', 'Caption'),
-            'slug' => Module::t('core', 'Slug'),
-            'room' => Module::t('core', 'Rooms count'),
-            'person' => Module::t('core', 'Person'),
-            'size' => Module::t('core', 'Size'),
-            'price_like' => Module::t('core', 'Price is the same as a room'),
+            'hotel_id'      => Module::t('core', 'Hotel'),
+            'category'      => Module::t('core', 'Category'),
+            'caption'       => Module::t('core', 'Caption'),
+            'slug'          => Module::t('core', 'Slug'),
+            'room'          => Module::t('core', 'Rooms count'),
+            'person'        => Module::t('core', 'Person'),
+            'size'          => Module::t('core', 'Size'),
+            'price_like'    => Module::t('core', 'Price is the same as a room'),
 
-            'tv' => Module::t('core', 'TV'),
-            'restroom' => Module::t('core', 'Restroom'),
-            'sauna' => Module::t('core', 'Sauna'),
-            'minibar' => Module::t('core', 'Minibar'),
-            'kettle' => Module::t('core', 'Kettle'),
-            'wifi' => Module::t('core', 'WiFi'),
-            'room_service' => Module::t('core', 'Room Service'),
+            'tv'            => Module::t('core', 'TV'),
+            'restroom'      => Module::t('core', 'Restroom'),
+            'sauna'         => Module::t('core', 'Sauna'),
+            'minibar'       => Module::t('core', 'Minibar'),
+            'kettle'        => Module::t('core', 'Kettle'),
+            'wifi'          => Module::t('core', 'WiFi'),
+            'room_service'  => Module::t('core', 'Room Service'),
             'room_cleaning' => Module::t('core', 'Room Cleaning'),
 
-            'description' => Module::t('core', 'Description'),
+            'description'   => Module::t('core', 'Description'),
 
-            'created_at' => Module::t('core', 'Created'),
-            'updated_at' => Module::t('core', 'Modified'),
+            'created_at'    => Module::t('core', 'Created'),
+            'updated_at'    => Module::t('core', 'Modified'),
         ];
     }
 
@@ -179,25 +176,11 @@ class BaseFund extends ActiveRecord implements SitemapInterface
     {
         if(parent::beforeSave($insert))
         {
-            $this->updated_at = time();
             $this->translit();
-            if($this->isNewRecord)
-            {
-                $this->created_at = $this->updated_at;
-            }
             return true;
         }
         else
             return false;
-    }
-
-    /**
-     * This is invoked after the record is deleted.
-     */
-    public function afterDelete()
-    {
-        parent::afterDelete();
-        Comment::deleteAll(['model' => self::COMMENT_FOR, 'parent_id' => $this->id]);
     }
 
     public static function getRooms($limit = 5, $category = self::CATEGORY_SUITE)
@@ -231,7 +214,7 @@ class BaseFund extends ActiveRecord implements SitemapInterface
     }
 
     /**
-     * @return Yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery
      */        
     public static function sitemap()
     {
