@@ -18,8 +18,8 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "*",
-        "sergmoro1/yii2-blog-tools" : "~2.0",
-        "sergmoro1/yii2-slide" : "~1.0"
+        "sergmoro1/yii2-blog-tools" : "*",
+        "sergmoro1/yii2-slide" : "*"
     },
     "autoload": {
         "psr-4": {
