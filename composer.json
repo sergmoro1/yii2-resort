@@ -10,7 +10,7 @@
     "authors": [
         {
             "name": "Sergey Morozov",
-            "email": "sergey@vorst.ru"
+            "email": "sergmoro1@ya.ru"
         }
     ],
     "minimum-stability": "dev",
@@ -18,8 +18,8 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "*",
-        "sergmoro1/yii2-blog-tools" : "*",
-        "sergmoro1/yii2-slide" : "*"
+        "sergmoro1/yii2-blog-tools": "dev-master",
+        "sergmoro1/yii2-slide": "dev-master"
     },
     "autoload": {
         "psr-4": {

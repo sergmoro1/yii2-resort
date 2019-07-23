@@ -1,62 +1,69 @@
-<h1>Yii2 module for resort rooms & price management.</h1>
+Yii2 module for resort rooms & price management
+===============================================
 
-<h2>Advantages</h2>
+Advantages
+----------
+
 The definition of rooms by category. 
 Description of rooms, services provided. Determination of prices for rooms depending on the category, food, treatment. 
 
-<h2>Installation</h2>
+Installation
+------------
 
-After installation <a href='https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-installation.md'>Yii2 advanced template</a>.
+After installation [Yii2 advanced template](https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-installation.md).
 
-<h3>Change project composer file</h3>
+1. Change project composer file.
 
-Package has dev-master version and depends on the same packages, so
+Package has dev-master version and depends on the same packages, so in app directory change `composer.json`.
 
-In app directory change <code>composer.json</code>:
-
-<pre>
+```
   "minimum-stability": "dev",
   "prefer-stable": true,
-</pre>
+```
 
-<h3>Install package</h3>
+2. Install package.
 
-<pre>
-$ composer require --prefer-dist sergmoro1/yii2-resort "dev-master"
-</pre>
+The preferred way to install this extension is through composer.
 
-<h3>Init yii2-blog-tools</h3>
+Either run
 
-Blog init, run all migrations and configs as explained in <a href='https://github.com/sergmoro1/yii2-blog-tools'>Yii2-blog-tools</a>. 
+`composer require --prefer-dist sergmoro1/yii2-resort`
 
-<h3>Run migrations</h3>
+or add
 
-<pre>
-$ php yii migrate --migrationPath=@vendor/sergmoro1/yii2-resort/src/migrations
-</pre>
+`"sergmoro1/yii2-blog-tools": "dev-master"`
 
-<h3>Copy predefined files to appropriate folders</h3>
+to the require section of your composer.json.
 
-In app directory:
+3. Init yii2-blog-tools
 
-<pre>
-$ cp ./vendor/sergmoro1/yii2-resort/src/initresort ./
-$ php initresort
-$ chmod -R 777 ./frontend/web/files
-</pre>
+Blog init and configs as explained in [sergmoro1/yii2-blog-tools](https://github.com/sergmoro1/yii2-blog-tools). 
 
+4. Run migration
+
+`php yii migrate --migrationPath=@vendor/sergmoro1/yii2-resort/src/migrations`
+
+5. Copy predefined files to appropriate folders by bathch file `initresort`
+
+To get it make a command in app directory.
+
+```
+cp ./vendor/sergmoro1/yii2-resort/src/initresort ./
+php initresort
+```
 To start the application, you need to determine the names of buildings of your hotel, room categories, accommodation options, food. 
 As an example, you can run a migration.
 
-<pre>
-$ php yii migrate --migrationPath=@app/migrations/resort
-</pre>
+6. Prepare and run migration use an example
 
-<h3>Config</h3>
+`php yii migrate --migrationPath=@app/migrations/resort`
 
-Change <code>common/config/main.php</code>.
+Configuration
+-------------
 
-<pre>
+Change `common/config/main.php`.
+
+```php
 return [
   ...
   'modules' => [
@@ -64,11 +71,11 @@ return [
     'resort' => ['class' => 'sergmoro1\resort\Module'],
     'slide' => ['class' => 'sergmoro1\slide\Module'],
     ],
-</pre>
+```
 
-Replace default <code>frontend/config/main.php</code>.
+Replace default `frontend/config/main.php`.
 
-<pre>  
+```php
 return [
   'email' => [
     'admin' => 'admin@your-site.ru',
@@ -110,8 +117,9 @@ return [
     'highlights' => ['h4', 'p', 'small', 'b', 'p', 'small'],
   ],
 ];
-</pre>
+```
 
-<h2>Start</h2>
+Start
+-----
 
-Enter <code>http://your-app/backend/web</code> and <code>Login</code>.
+Enter `http://your-app/backend/web` and `Login`.
