@@ -10,18 +10,7 @@ Description of rooms, services provided. Determination of prices for rooms depen
 Installation
 ------------
 
-After installation [Yii2 advanced template](https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-installation.md).
-
-1. Change project composer file.
-
-Package has dev-master version and depends on the same packages, so in app directory change `composer.json`.
-
-```
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-```
-
-2. Install package.
+1. Install package.
 
 The preferred way to install this extension is through composer.
 
@@ -31,19 +20,19 @@ Either run
 
 or add
 
-`"sergmoro1/yii2-blog-tools": "dev-master"`
+`"sergmoro1/yii2-blog-tools": "~1.1"`
 
 to the require section of your composer.json.
 
-3. Init yii2-blog-tools
+2. Init yii2-blog-tools
 
 Blog init and configs as explained in [sergmoro1/yii2-blog-tools](https://github.com/sergmoro1/yii2-blog-tools). 
 
-4. Run migration
+3. Run migration
 
 `php yii migrate --migrationPath=@vendor/sergmoro1/yii2-resort/src/migrations`
 
-5. Copy predefined files to appropriate folders by bathch file `initresort`
+4. Copy predefined files to appropriate folders by bathch file `initresort`
 
 To get it make a command in app directory.
 
@@ -54,7 +43,7 @@ php initresort
 To start the application, you need to determine the names of buildings of your hotel, room categories, accommodation options, food. 
 As an example, you can run a migration.
 
-6. Prepare and run migration use an example
+5. Prepare and run migration use an example
 
 `php yii migrate --migrationPath=@app/migrations/resort`
 
