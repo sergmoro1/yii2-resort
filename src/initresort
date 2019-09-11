@@ -1,0 +1,43 @@
+#!/usr/bin/env php
+<?php
+// source folder
+$src = './vendor/sergmoro1/yii2-resort/src/temp';
+// backend/config
+copy($src . '/backend/config/params.php', './backend/config/params.php');
+// common/models
+copyFiles($src, '/common/models/');
+// console/controllers
+copy($src . '/console/controllers/RbacController.php', './console/controllers/RbacController.php');
+// console/rbac
+if(!is_dir('./console/rbac'))
+    mkdir('./console/rbac');
+copyFiles($src, '/console/rbac/');
+// console/migrations
+if(!is_dir('./console/migrations'))
+    mkdir('./console/migrations');
+if(!is_dir('./console/migrations/resort'))
+    mkdir('./console/migrations/resort');
+copyFiles($src, '/console/migrations/resort/');
+// frontend/web/files
+if(!is_dir('./frontend/web/files'))
+    mkdir('./frontend/web/files');
+// make folders for files & photos
+makeFolders('./frontend/web/files/', ['fund', 'slide']);
+
+/**
+ * Copy all files from $source$dest/ to .$dest/
+ */
+function copyFiles($src, $dest) {
+    $path = $src . $dest;
+    foreach(array_slice(scandir($path), 2) as $file)
+        copy($src . $dest . $file, '.' . $dest . $file);
+}
+/**
+ * Make subfolders in a dir
+ */
+function makeFolders($dir, $folders) {
+    foreach($folders as $folder) {
+        if(!is_dir($dir . $folder))
+            mkdir($dir . $folder);
+    }
+}
