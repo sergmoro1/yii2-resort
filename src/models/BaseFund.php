@@ -75,9 +75,19 @@ class BaseFund extends ActiveRecord implements SitemapInterface
         ];
     }
 
-    public function getPrice()
-    {
-        return ($price = Price::findOne(['fund_id' => $this->id, 'show' => 1])) ? $price->value : 0;
+    /**
+     * @return integer room price or price a room like this 
+     */
+	public function getPrice()
+	{
+		// find price
+        if($price = Price::findOne(['fund_id' => $this->id, 'show' => 1]))
+			return $price->value;
+		// find price for the room like this
+		elseif($this->price_like && ($price = Price::findOne(['fund_id' => $this->price_like, 'show' => 1])))
+			return $price->value;
+		else
+			return false;
     }
 
     /**
